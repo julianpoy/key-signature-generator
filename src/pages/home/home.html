@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Key Signature Generator
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card *ngIf="!signature" padding>
+    <ion-card-header>
+      Hello!
+    </ion-card-header>
+    <ion-card-content>
+      <p>Click a button to get started</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="signature">
+    <!-- <ion-item>
+      <h2></h2>
+      <p>November 5, 1955</p>
+    </ion-item> -->
+
+    <img *ngIf="showStaff" class="staffPreview" src="{{ signature.img }}">
+
+    <ion-card-content *ngIf="showText">
+      <p>This is {{ signature.major }} major or {{ signature.minor }} minor</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button *ngIf="!showText" (click)="showText = true" ion-button icon-left clear small>
+          <ion-icon name="eye"></ion-icon>
+          <div>Reveal Name</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button *ngIf="!showStaff" (click)="showStaff = true" ion-button icon-left clear small>
+          <ion-icon name="eye"></ion-icon>
+          <div>Reveal Staff</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button (click)="playScale()" ion-button icon-left clear small>
+          <ion-icon name="musical-notes"></ion-icon>
+          <div>Play Scale</div>
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+  
+</ion-content>
+
+<ion-footer>
+  <button ion-button full color="secondary" (click)="randomize('full')">Randomize</button>
+  <button ion-button full color="primary" (click)="randomize('staff')">Randomize - Staff Only</button>
+  <button ion-button full color="primary" (click)="randomize('text')">Randomize - Name Only</button>
+</ion-footer>
